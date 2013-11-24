@@ -1,2 +1,123 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+.preso
+
+	.step#title
+		.container
+			%h1 <span>Lode</span>script
+
+			%h3 A (mostly fictional) language for making <span>l</span>inked <span>o</span>pen <span>d</span>ata <span>e</span>asier
+
+
+			%p
+				Michael Lascarides<br>
+				@mlascarides
+			%p
+				National Digital Forum, Wellington, NZ<br>
+				27 November 2013
+
+	.step#problem
+		.container
+			%h2 The problem
+
+			%p Bucky Fuller
+			%p See also: Metcalfe's Law
+
+			%ul
+				%li There are lots of Things.
+				%li The number of possible Connections between Things is somewhere between n^2 and n!
+				%li Describing the Connections between Things is one of the most important roles that GLAMs can play.
+				%li Therefore, the tools to make Connections between Things must be as simple as possible
+
+	.step#more-problem
+		.container
+			%h2 Your favorite language sucks.
+			%ul 
+				%li Templating languages: PHP => ERB => HAML => Slim
+				%li XML -> JSON
+
+	.step#current
+		.container
+			%h2 Current state of play in LOD
+			%ul 
+				%li RDF
+				%li RDFa
+				%li JSON-LD
+				%li ???
+
+	.step#human-problems
+		.container
+			%h2 What human problems are we trying to solve?
+
+			%ul
+				%li Consistent, parseable description
+				%li Attribution
+				%li "Connect mine to yours"
+
+	.step#what-we-want
+		.container
+			%h2 What would an ideal situation look like?
+			%ul 
+				%li Understandable by a civilian. Plain-English, plain-text markup. 
+				%li As little punctuation as possible (maybe whitespace delimited, like Python?)
+				%li ...But entirely machine-readable.
+				%li Be laser-focused focused on the links between documents. Not intended as a replication of the document’s contents. However, a certain amount of data description may be necessary.
+				%li Each lode document == one (implied) subject, but many predicates and objects.
+				%li Ship with tools to easily move between JSON, RDF, csv, Mongo documents, etc.
+				%li Attachable to a HTML document via <link> tag or other mechanism, but freestanding as an external resource. (Think CSS).
+				%li Should be inheritable from existing resources. (e.g., easy to inherit all of Library of Congress’ linking rules except for one or two). (Again, think CSS). 
+				%li Harvestable by spiders, and storable in document databases.
+				%li Definition should essentially function as API documentation all by its lonesome. 
+				%li Ships with a standard syntax. 
+				%li Extensible? 
+
+	.step#lodescript
+		.container
+			%h2 Let's make a better language
+
+			%p Lodescript
+
+			%p Linked Open Data, Easily
+
+			%p Good project name. Catchy. Available. Googleable.
+
+	.step#steal-this-idea
+		.container
+			%h2 Let's steal some great ideas
+			%ul 
+				%li Whitespace hierarchy (Python, HAML)
+				%li Cascading instead of namespaces (CSS)
+				%li Context (JSON-LD)
+				%li Severe limitations, repeated broadly (Twitter)
+				%li Domain authority (humans.txt)
+
+	.step#do-less
+		.container
+			%h2 Let's do less
+			%ul 
+				%li Only one line per predicate
+				%li Just how simple can we possibly make it? 
+				%li How “dumb” can it be?
+				%li How much can we leave out?
+
+	.step#unsolved
+		.container
+			%h2 Unsolved problems
+			%ul 
+				%li Only one line per predicate
+				%li Just how simple can we possibly make it? 
+				%li How “dumb” can it be?
+				%li How much can we leave out?
+
+	.step#case-study
+		.container
+			%h2 Case study
+			%ul 
+				%li Only one line per predicate
+
+	.step#next-steps
+		.container
+			%h2 What it needs next
+			%ul 
+				%li Better working prototypes
+				%li Formal spec
+				%li Tools: Compiler, Seedbomb, Converter, Validator
+				%li A community!
