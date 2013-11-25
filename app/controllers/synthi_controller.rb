@@ -1,0 +1,2 @@
+class SynthiController < ApplicationController
+end

@@ -1,0 +1,21 @@
+%h1 Listing schemes
+
+%table
+  %tr
+    %th Name
+    %th Url
+    %th
+    %th
+    %th
+
+  - @schemes.each do |scheme|
+    %tr
+      %td= scheme.name
+      %td= scheme.url
+      %td= link_to 'Show', scheme
+      %td= link_to 'Edit', edit_scheme_path(scheme)
+      %td= link_to 'Destroy', scheme, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Scheme', new_scheme_path

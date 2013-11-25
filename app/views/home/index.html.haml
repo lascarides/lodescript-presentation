@@ -4,7 +4,7 @@
 		.container
 			%h1 <span>Lode</span>script
 
-			%h3 A (mostly fictional) language for making <span>l</span>inked <span>o</span>pen <span>d</span>ata <span>e</span>asier
+			%h3 A (mostly fictional) tool for making <span>l</span>inked <span>o</span>pen <span>d</span>ata <span>e</span>asier<br>(Or, how I learned to stop worrying and tolerate RDF)
 
 
 			%p
@@ -12,112 +12,175 @@
 				@mlascarides
 			%p
 				National Digital Forum, Wellington, NZ<br>
-				27 November 2013
+				26 November 2013
+
+	.step#disclaimer.disclaimer
+		.container
+			%h2 DISCLAIMER #1
+
+			%h3 Opinions ahead.
+
+			%p Mind the lack of intellectual rigor.
 
 	.step#problem
 		.container
 			%h2 The problem
 
-			%p Bucky Fuller
-			%p See also: Metcalfe's Law
+			/ %p Bucky Fuller
+			/ %p See also: Metcalfe's Law
 
-			%ul
-				%li There are lots of Things.
-				%li The number of possible Connections between Things is somewhere between n^2 and n!
-				%li Describing the Connections between Things is one of the most important roles that GLAMs can play.
-				%li Therefore, the tools to make Connections between Things must be as simple as possible
+			/ %ul
+			/ 	%li There are lots of Things.
+			/ 	%li The number of possible Connections between Things is somewhere between n^2 and n!
+			/ 	%li Describing the Connections between Things is one of the most important roles that GLAMs can play.
+			/ 	%li Therefore, the tools to make Connections between Things must be as simple as possible
+
+
+	.step#simplify
+		.container
+			%h2 Simpler things are often more effective than powerful things
+
+	.step#desire-lines
+		.container
+			.droppy
+				%h2 "The three cardinal virtues of a programmer are laziness, impatience and hubris."
+				%h3 -- Larry Wall (inventor of Perl)
 
 	.step#more-problem
 		.container
-			%h2 Your favorite language sucks.
-			%ul 
-				%li Templating languages: PHP => ERB => HAML => Slim
-				%li XML -> JSON
+			%h2 Languages get simpler over time
+			.row
+				.col-sm-6
+					%h3 ERB
+					= image_tag("lang1.png")
+				.col-sm-6
+					%h3 HAML
+					= image_tag("lang3.png")
+			/ .row
+			/ 	.col-sm-6.offset-3
+			/ 		= image_tag("lang2.png")
 
+	.step#comparo
+		.container
+			%h2 Expressions compared
+			.canvas
+				%table.table
+					%tbody
+						%tr 
+							%th RDF (XML)
+							%td= '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns="http://www.example.org/#" xmlns:mccahon="http://www.mccahon.co.nz/cm001302"><ns:CreativeWork rdf:about="http://www.example.org/#cw"><mccahon:title> Nelson Landscape from Queen\'s Drive </mccahon:title>'
+						%tr 
+							%th RDF (Notation 3)
+							%td
+								%div= "@prefix : <http://example.org/> ."
+								%div= "@prefix mccahon: <http://www.mccahon.co.nz/cm001302> ."
+								%div= ":this a :CreativeWork"
+								%div= ":this mccahon:Title \"Nelson Landscape from Queen's Drive\""
+						%tr 
+							%th JSON-LD
+							%td
+								%div= "{\"@context\": {\"mccahon\": \"http://www.mccahon.co.nz/cm001302\"}},"
+								%div= "\"@id\": \"http://example.org/mccahon/12345\","
+								%div= "\"@type\": \"sc:CreativeWork\","
+								%div= "\"mccahon:Title\": \"Nelson Landscape from Queen's Drive\","
 	.step#current
 		.container
 			%h2 Current state of play in LOD
-			%ul 
-				%li RDF
-				%li RDFa
-				%li JSON-LD
-				%li ???
-
-	.step#human-problems
-		.container
-			%h2 What human problems are we trying to solve?
-
-			%ul
-				%li Consistent, parseable description
-				%li Attribution
-				%li "Connect mine to yours"
-
+			= render :partial => 'table'
 	.step#what-we-want
 		.container
-			%h2 What would an ideal situation look like?
-			%ul 
-				%li Understandable by a civilian. Plain-English, plain-text markup. 
-				%li As little punctuation as possible (maybe whitespace delimited, like Python?)
-				%li ...But entirely machine-readable.
-				%li Be laser-focused focused on the links between documents. Not intended as a replication of the document’s contents. However, a certain amount of data description may be necessary.
-				%li Each lode document == one (implied) subject, but many predicates and objects.
-				%li Ship with tools to easily move between JSON, RDF, csv, Mongo documents, etc.
-				%li Attachable to a HTML document via <link> tag or other mechanism, but freestanding as an external resource. (Think CSS).
-				%li Should be inheritable from existing resources. (e.g., easy to inherit all of Library of Congress’ linking rules except for one or two). (Again, think CSS). 
-				%li Harvestable by spiders, and storable in document databases.
-				%li Definition should essentially function as API documentation all by its lonesome. 
-				%li Ships with a standard syntax. 
-				%li Extensible? 
+			%h2 What would a solution look like that is...?
+
+			%h3{'data-jmpress' => 'fade'} • Simple > powerful
+			%h3{'data-jmpress' => 'fade'} • Human readable (even elegant)
+			%h3{'data-jmpress' => 'fade'} • Machine readable structured data
+			%h3{'data-jmpress' => 'fade'} • Cascading rather than namespaced
+			%h3{'data-jmpress' => 'fade'} • Easily mutable into other forms (RDF, etc)
+
+			/ %ul 
+			/ 	%li Understandable by a civilian. Plain-English, plain-text markup. 
+			/ 	%li As little punctuation as possible (maybe whitespace delimited, like Python?)
+			/ 	%li ...But entirely machine-readable.
+			/ 	%li Be laser-focused focused on the links between documents. Not intended as a replication of the document’s contents. However, a certain amount of data description may be necessary.
+			/ 	%li Each lode document == one (implied) subject, but many predicates and objects.
+			/ 	%li Ship with tools to easily move between JSON, RDF, csv, Mongo documents, etc.
+			/ 	%li Attachable to a HTML document via <link> tag or other mechanism, but freestanding as an external resource. (Think CSS).
+			/ 	%li Should be inheritable from existing resources. (e.g., easy to inherit all of Library of Congress’ linking rules except for one or two). (Again, think CSS). 
+			/ 	%li Harvestable by spiders, and storable in document databases.
+			/ 	%li Definition should essentially function as API documentation all by its lonesome. 
+			/ 	%li Ships with a standard syntax. 
+			/ 	%li Extensible? 
 
 	.step#lodescript
 		.container
-			%h2 Let's make a better language
+			%h2 So, I thought, Let's make a language...
 
-			%p Lodescript
+			%h1 Lodescript
 
-			%p Linked Open Data, Easily
+			%h2 Linked Open Data, Easily
 
 			%p Good project name. Catchy. Available. Googleable.
 
 	.step#steal-this-idea
 		.container
-			%h2 Let's steal some great ideas
-			%ul 
-				%li Whitespace hierarchy (Python, HAML)
-				%li Cascading instead of namespaces (CSS)
-				%li Context (JSON-LD)
-				%li Severe limitations, repeated broadly (Twitter)
-				%li Domain authority (humans.txt)
-
-	.step#do-less
+			%h1 Let's steal some great ideas
+			%h3 Warning: Nerdy content ahead.
+	.step#whitespace
 		.container
-			%h2 Let's do less
-			%ul 
-				%li Only one line per predicate
-				%li Just how simple can we possibly make it? 
-				%li How “dumb” can it be?
-				%li How much can we leave out?
-
-	.step#unsolved
+			%h2 Whitespace hierarchy (Python, HAML)
+	.step#cascading
 		.container
-			%h2 Unsolved problems
-			%ul 
-				%li Only one line per predicate
-				%li Just how simple can we possibly make it? 
-				%li How “dumb” can it be?
-				%li How much can we leave out?
-
-	.step#case-study
+			%h2 Cascading instead of namespaces (CSS)
+	.step#readable
 		.container
-			%h2 Case study
-			%ul 
-				%li Only one line per predicate
+			%h2 Readable by humans and machines at the same time (Markdown)
+	.step#limits
+		.container
+			%h2 Severe limitations, repeated broadly (Twitter)
+
+	.step#where-it-is
+		.container
+			%h2 Where Lodescript sits
+			= render :partial => 'table'
+
+
+	/ .step#do-less
+	/ 	.container
+	/ 		%h2 Let's do less
+	/ 		%ul 
+	/ 			%li Only one line per predicate
+	/ 			%li Just how simple can we possibly make it? 
+	/ 			%li How “dumb” can it be?
+	/ 			%li How much can we leave out?
+
+
+	.step#case-study.disclaimer
+		.container
+			%h2 DISCLAIMER #2
+
+			%h3 Code experiments ahead.
+
+			%p Corners have been cut.
+
+			%p= link_to "Got it, let's go.", things_path
+
 
 	.step#next-steps
 		.container
-			%h2 What it needs next
-			%ul 
-				%li Better working prototypes
-				%li Formal spec
-				%li Tools: Compiler, Seedbomb, Converter, Validator
-				%li A community!
+			%h2 What I've learned
+
+			%h3.fader{'data-jmpress' => 'fade'} The surest way to discover that someone's created a great solution for your problem is to work on your own solution for three months.
+			%h3.fader{'data-jmpress' => 'fade'} JSON-LD is what I'd use to serve data.
+			%h3.fader{'data-jmpress' => 'fade'} Notation 3 is what I'd use to hand-code RDF.
+			%h3.fader{'data-jmpress' => 'fade'} I don't really want to create a language. 
+			%h3.fader{'data-jmpress' => 'fade'} I want to make a HAML- or SASS-style preprocessor.
+			%h3.fader{'data-jmpress' => 'fade'} I still firmly believe that linked data needs to be easier.
+
+	.step#next-steps
+		.container
+			%h2 Conclusion
+
+			%h3.fader{'data-jmpress' => 'fade'} 
+			%h3.fader{'data-jmpress' => 'fade'} 
+			%h3.fader{'data-jmpress' => 'fade'} 
+			%h3.fader{'data-jmpress' => 'fade'} 

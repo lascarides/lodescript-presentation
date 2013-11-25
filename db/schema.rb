@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131124004207) do
   create_table "memberships", force: true do |t|
     t.integer  "organization_id"
     t.integer  "thing_id"
-    t.integer  "position"
+    t.integer  "row_order"
     t.string   "source_url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,11 +42,13 @@ ActiveRecord::Schema.define(version: 20131124004207) do
   end
 
   create_table "pieces", force: true do |t|
-    t.integer  "organization_id"
+    t.integer  "membership_id"
     t.string   "predicate"
+    t.string   "original_predicate"
     t.integer  "thing_id"
     t.string   "content"
     t.integer  "equivalent_id"
+    t.boolean  "is_active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"

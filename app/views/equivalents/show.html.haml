@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @equivalent.name
+%p
+  %b Url:
+  = @equivalent.url
+%p
+  %b Organization:
+  = @equivalent.organization
+%p
+  %b Namespace:
+  = @equivalent.namespace
+
+= link_to 'Edit', edit_equivalent_path(@equivalent)
+\|
+= link_to 'Back', equivalents_path

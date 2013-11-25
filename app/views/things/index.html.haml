@@ -1,0 +1,19 @@
+.canvas
+	%h1 All the things
+
+	= link_to "Make a new thing", new_thing_path, :class => 'btn btn-primary btn-large'
+
+	%table.table
+		%thead
+			%tr
+				%th Name
+				%th Sources
+				%th
+
+		%tbody
+			- @things.each do |thing|
+				%tr
+					%td= link_to thing.name, thing
+					%td= "#{thing.pieces.size} fields from #{thing.memberships.size} sources"
+					%td
+						= link_to 'x', thing, :class => 'btn btn-danger btn-small', :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization: 
+  predicate: MyString
+  thing: 
+  content: MyString
+  equivalent: 
+
+two:
+  organization: 
+  predicate: MyString
+  thing: 
+  content: MyString
+  equivalent: 

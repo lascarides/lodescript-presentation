@@ -1,0 +1,141 @@
+.canvas
+
+	%ul.nav.nav-tabs
+		%li.active= link_to "Playground", "#playground", 'data-toggle' => 'tab'
+		%li= link_to "Sources", "#sources", 'data-toggle' => 'tab'
+		%li= link_to "RDF", "#rdf", 'data-toggle' => 'tab'
+		%li= link_to "Notation3", "#notation", 'data-toggle' => 'tab'
+		%li= link_to "JSON-LD", "#json", 'data-toggle' => 'tab'
+		%li= link_to "Lodescript", "#lodescript", 'data-toggle' => 'tab'
+		%li= link_to "Scores", "#scores", 'data-toggle' => 'tab'
+
+	.tab-content
+		#playground.tab-pane.active.fade.in
+			%h1= @thing.name
+			- @thing.pieces.group_by(&:predicate).each do |pred, pieces|
+				.piece
+					%label= pred
+
+					- if pieces.size > 1
+						.multi-piece +
+					- pieces.each do |piece|
+						.content{:style => "background: #{piece.organization.color}"}
+							%strong
+								= "#{piece.organization}:#{piece.original_predicate}"
+							=raw piece.content_output
+					= form_for pieces.first, url: {action: "update", controller: "pieces", id: pieces.first.id}, html: {class: "form-inline"} do |f|
+
+						.form-group
+							%input#predicate.form-control{:name => 'predicate', :placeholder => pred}
+		#sources.tab-pane.fade
+			%h2 Sources
+
+
+			%table.table.table-bordered.table-striped#sortable{ :data => {update_url: sort_memberships_things_path } }
+				%thead
+					%tr
+						%th Rank
+						%th Organization
+						%th URL
+						%th
+
+				%tbody
+					- @thing.memberships.each_with_index do |mem, i|
+						%tr{data: {item_id: "#{mem.id}"}, class: 'item'}
+							%td{:style => "background: #{mem.organization.color}"}= "#{i + 1}."
+							%td{:style => "background: #{mem.organization.color}"}=mem.organization
+							%td=raw mem.source_url
+							%td
+								= button_to "top", :action => 'sort_memberships', :id => mem
+
+			= form_for @thing, url: {action: "update"}, html: {class: "form-horizontal"} do |f|
+				.form-inputs
+					.control-group
+						%label
+					.controls
+						%input#query.form-control.input-lg{:name => 'base_url', :placeholder => "Add a new source"}
+
+
+
+		#lodescript.tab-pane.fade
+			.lode-sample
+				.hed= "=========================================="
+				%label= @thing.name
+				%div http://example.org/mccahon/12345
+				.hed= "=========================================="
+				- @thing.pieces.group_by(&:predicate).each do |pred, pieces|
+					%div
+						%label= "#{pred.titleize}:"
+						=raw pieces.first.content_output
+
+				.hed= "=========================================="
+				%label Bibliography
+				.hed= "=========================================="
+				- @thing.memberships.each do |mem|
+					.biblio
+						%label= "#{mem.organization} supplied "
+						= @thing.bibliography(mem)
+						from
+						= link_to mem.source_url, mem.source_url
+
+		#rdf.tab-pane.fade
+			.lode-sample
+				%div
+					= '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns="http://www.example.org/#"'
+					- @thing.memberships.each do |mem|
+						= 'xmlns:' + mem.prefix + '="' + mem.source_url + '" '
+					= '>'
+				%div= '<ns:CreativeWork rdf:about="http://www.example.org/#john">'
+				- @thing.pieces.group_by(&:predicate).each do |pred, pieces|
+					%div
+						= '<' + pieces.first.membership.prefix + ':' + pieces.first.predicate.underscore + '>'
+						= pieces.first.content.strip
+						= '</' + pieces.first.membership.prefix + ':' + pieces.first.predicate.underscore + '>'
+				%div= '</ns:CreativeWork>'
+				%div= '</rdf:RDF>'
+
+
+
+		#json.tab-pane.fade
+			.lode-sample
+				%div= '{'
+				%div= '"@context": {'
+				- @thing.memberships.each do |mem|
+					%div= '"' + mem.prefix + '": "' + mem.source_url + '",'
+				%div= '}'
+				%div= '},'
+				%div= '"@id": "http://example.org/mccahon/12345",'
+				%div= '"@type": "sc:CreativeWork",'
+				- @thing.pieces.group_by(&:predicate).each do |pred, pieces|
+					%div= '"' + pieces.first.membership.prefix + ':' + pieces.first.predicate.camelize + '": "' + pieces.first.content_output + '",'
+				%div= '}'
+
+		#notation.tab-pane.fade
+			.lode-sample
+				%div= '@prefix : <http://example.org/> .'
+				- @thing.memberships.each do |mem|
+					%div= '@prefix ' + mem.prefix + ': <' + mem.source_url + '> .'
+				%div= ':this  a  :CreativeWork'
+				- @thing.pieces.group_by(&:predicate).each do |pred, pieces|
+					%div= ':this ' + pieces.first.membership.prefix + ':' + pieces.first.predicate.camelize + ' "' + pieces.first.content_output + '"'
+
+		#scores.tab-pane.fade
+			%h2 Filesize scoreboard
+			%table.table
+				%thead
+					%tr
+						%th Format
+						%th Filesize
+				%tbody
+					%tr
+						%td RDF
+						%td 4,182
+					%tr
+						%td Notation 3
+						%td 3,842
+					%tr
+						%td JSON-LD
+						%td 3,777
+					%tr
+						%td Lodescript
+						%td 3,312

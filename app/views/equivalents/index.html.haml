@@ -1,0 +1,25 @@
+%h1 Listing equivalents
+
+%table
+  %tr
+    %th Name
+    %th Url
+    %th Organization
+    %th Namespace
+    %th
+    %th
+    %th
+
+  - @equivalents.each do |equivalent|
+    %tr
+      %td= equivalent.name
+      %td= equivalent.url
+      %td= equivalent.organization
+      %td= equivalent.namespace
+      %td= link_to 'Show', equivalent
+      %td= link_to 'Edit', edit_equivalent_path(equivalent)
+      %td= link_to 'Destroy', equivalent, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Equivalent', new_equivalent_path

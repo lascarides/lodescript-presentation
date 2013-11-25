@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization_id: 
+  thing_id: 
+  position: 1
+
+two:
+  organization_id: 
+  thing_id: 
+  position: 1

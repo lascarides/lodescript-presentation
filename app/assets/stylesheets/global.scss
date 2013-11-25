@@ -1,0 +1,234 @@
+$cWhite: #f9f2e0;
+$cMint: #a8c2c0;
+$cDarkMint: #70948a;
+$cDark: #144742;
+$cRed: #e62f29;
+$cOrange: #fe6a12;
+$cPink: #f9aa8e;
+
+body, main {
+	background: $cMint;
+}
+
+body.presentation {
+
+	background: $cDarkMint;
+	font-size: 1.6em;
+	font-weight: 200;
+
+	h1 {
+		font-size: 3em;
+		margin: 2em 0 0;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+
+	#title {
+		h3 {
+			margin-bottom: 2em;
+			font-size: 1.8em;
+		}
+		span {
+			color: $cMint;
+		}
+	}
+
+	#problem {
+		background: url(/assets/fuller-network.jpg) no-repeat 50% 50% fixed;
+		background-size: cover;
+	}
+
+	#simplify {
+		background: url(/assets/simplify.jpg) no-repeat 100% 50% fixed;
+		background-size: contain;
+		h2 {
+			width: 50%;
+		}
+	}
+
+	#cascading {
+		background: url(/assets/cascading.png) no-repeat 100% 50% fixed;
+		background-size: contain;
+		h2 {
+			width: 50%;
+		}
+	}
+
+	#readable {
+		background: url(/assets/markdown.png) no-repeat 100% 50% fixed;
+		background-size: contain;
+		h2 {
+			width: 30%;
+		}
+	}
+
+	#whitespace {
+		background: url(/assets/lang3.png) no-repeat 50% 50% fixed;
+		background-size: 60%;
+	}
+
+	#limits {
+		background: url(/assets/twitter.png) no-repeat 50% 50% fixed;
+	}
+
+	#desire-lines {
+		background: url(/assets/desire-lines.jpg) no-repeat 50% 50% fixed;
+		background-size: cover;
+		.droppy {
+			border-radius: 1em;
+			background: rgba(0,0,0,0.6);
+			padding: 1em;
+			margin: 1em 0;
+			h2, h3 {
+				text-shadow: 2px 2px #000;
+			}
+		}
+	}
+
+	h3 {
+		font-size: 1.5em;
+		font-weight: 200;
+	}
+
+	.step {
+		color: $cWhite;
+	}
+
+	.disclaimer {
+		background: #a00;
+		text-align: center;
+		font-size: 2em;
+		h2 {
+			padding-top: 2em;
+		}
+	}
+
+	.row {
+		img {
+			border-radius: 1em;
+		}
+	}
+
+	.will-fade {
+		display: none;
+	}
+	.has-fade {
+		display: block;
+	}
+
+}
+
+.navbar-brand {
+	font-family: "Clarendon";
+	color: #fff !important;
+}
+
+.canvas {
+	margin: 1em 0;
+	padding:1em;
+	background: #fff;
+	border-radius: 0.5em;
+	font-size: 0.8em;
+	th {
+		color: #000;
+	}
+	td {
+		color: #555;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.poor {
+		background: #a00;
+		color: #fff;
+	}
+	.avg {
+		background: #fc3;
+		color: #000;
+	}
+	.good {
+		background: #6b2;
+		color: #000;
+	}
+	.exc {
+		background: #0a0;
+		color: #fff;
+	}
+	.reveal {
+		display: none;
+	}
+	.lode-label {
+		background: #ff0;
+	}
+}
+
+.piece, .thing-source {
+	position: relative;
+	font-size: 18px;
+	height: 2.5em;
+	padding: 0;
+	border-radius: 0.5em;
+	border: 1px solid #ccc;
+	margin: 0 0 0.5em;
+	overflow: hidden;
+	label {
+		width: 30%;
+		float: left;
+		display: block;
+		padding: 0.5em;
+	}
+	.content {
+		display: block;
+		margin: 0 0 0 32%;
+		padding: 0.5em;
+		overflow: hidden;
+	}
+	.content + .content, strong, form {
+		display: none;
+	}
+	.multi-piece {
+		position: absolute;
+		right: 0.3em;
+		top: 0.3em;
+		font-weight: bold;
+	}
+}
+
+.piece.active {
+	border-color: red;
+	height: auto;
+	overflow: auto;
+	.content {
+		margin-bottom: 1em;
+	}
+	.content + .content {
+		text-decoration: line-through;
+		display: block;
+	}
+	.content:last-child {
+		margin-bottom: 0;
+	}
+	strong {
+		display: inline;
+	}
+	form {
+		display: block;
+	}
+}
+
+.lode-sample {
+	font-family: "Courier New";
+	font-size: 20px;
+	padding: 1em;
+}
+
+#sortable {
+  tr.item {
+    cursor: row-resize;
+  }
+}
+
+.table {
+	font-size: 1.3em;
+}

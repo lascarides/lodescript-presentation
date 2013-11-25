@@ -1,0 +1,27 @@
+%h1 Listing pieces
+
+%table
+  %tr
+    %th Organization
+    %th Predicate
+    %th Thing
+    %th Content
+    %th Equivalent
+    %th
+    %th
+    %th
+
+  - @pieces.each do |piece|
+    %tr
+      %td= piece.organization
+      %td= piece.predicate
+      %td= piece.thing
+      %td= piece.content
+      %td= piece.equivalent
+      %td= link_to 'Show', piece
+      %td= link_to 'Edit', edit_piece_path(piece)
+      %td= link_to 'Destroy', piece, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Piece', new_piece_path

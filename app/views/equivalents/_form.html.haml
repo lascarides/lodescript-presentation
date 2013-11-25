@@ -1,0 +1,22 @@
+= form_for @equivalent do |f|
+  - if @equivalent.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@equivalent.errors.count, "error")} prohibited this equivalent from being saved:"
+      %ul
+        - @equivalent.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :url
+    = f.text_field :url
+  .field
+    = f.label :organization
+    = f.text_field :organization
+  .field
+    = f.label :namespace
+    = f.text_field :namespace
+  .actions
+    = f.submit 'Save'

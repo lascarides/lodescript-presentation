@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @scheme.name
+%p
+  %b Url:
+  = @scheme.url
+
+= link_to 'Edit', edit_scheme_path(@scheme)
+\|
+= link_to 'Back', schemes_path

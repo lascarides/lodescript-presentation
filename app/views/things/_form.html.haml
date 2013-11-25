@@ -1,0 +1,9 @@
+= form_for @thing, url: {action: "create"}, html: {class: "form-horizontal"} do |f|
+
+  .form-inputs
+    .control-group
+      %label
+      .controls
+        %input#query.form-control.input-lg{:name => 'base_url', :placeholder => "Where shall I start?"}
+
+
